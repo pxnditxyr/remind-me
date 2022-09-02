@@ -1,11 +1,10 @@
 import { FormEvent, useMemo, useState } from 'react';
-// import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { AuthLayout } from '../layout';
 
 import { isEmail } from '../../helpers';
 
-import { checkingAuthentication, startGoogleSignIn } from '../../store/auth';
+import { startGoogleSignIn, startSignInUserWithEmailAndPassword } from '../../store/auth';
 import { useForm, IFormValidations } from '../../hooks';
 import { useAppDistpach, useAppSelector } from '../../store';
 import { FormField } from '../components';
@@ -13,8 +12,10 @@ import { FormField } from '../components';
 
 
 const formData = {
-    email: 'yuki@gmail.com',
-    password: '123456'
+    // email: 'yuki@gmail.com',
+    // password: '123456'
+    email: 'example@gmail.com',
+    password: 'Madara987!',
 }
 
 const formValidations : IFormValidations = {
@@ -24,7 +25,7 @@ const formValidations : IFormValidations = {
 export const SignInPage = () => {
 
     const dispatch = useAppDistpach();
-    const { status } = useAppSelector( state => state.auth );
+    const { status, errorMessage } = useAppSelector( state => state.auth );
 
     const isAuthenticated = useMemo( () => status === 'checking', [ status ] );
 
@@ -32,18 +33,18 @@ export const SignInPage = () => {
 
     const { 
         email, password, emailValid,
-        onInputChange, onResetForm 
+        onInputChange, onResetForm,
+        formState
     } = useForm( formData, formValidations );
 
     const onSubmit = ( event : FormEvent<HTMLFormElement> ) => {
         event.preventDefault();
-        dispatch( checkingAuthentication( email, password ) );
+        dispatch( startSignInUserWithEmailAndPassword( formState ) );
         setIsFormSubmitted( true );
         onResetForm();
     };
 
     const onGoogleSignIn = () => {
-        console.log( 'On Google Sign In' );
         dispatch( startGoogleSignIn( email, password ) );
     };
 
@@ -66,9 +67,8 @@ export const SignInPage = () => {
                     value={ password }
                     onChange={ onInputChange }
                     />
-                <button
-                    disabled={ isAuthenticated }
-                > Sign In </button>
+                <button disabled={ isAuthenticated }> Sign In </button>
+                { errorMessage && <p> { errorMessage } </p> }
             </form>
             <Link to="../signup">  Don't have an account? Sign Up </Link>
             <button 
