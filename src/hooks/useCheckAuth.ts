@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 import { FirebaseAuth } from '../firebase';
 import { useAppDistpach, useAppSelector } from '../store';
 import { signIn, signOut } from '../store/auth';
+import { startLoadingMemories } from '../store/remind-me';
 
 
 export const useCheckAuth = () => {
@@ -13,12 +14,11 @@ export const useCheckAuth = () => {
     useEffect( () => {
 
         onAuthStateChanged( FirebaseAuth, async ( user ) => {
-            if ( user ) {
-                const { uid, email, displayName, photoURL } = user;
-                dispatch( signIn({ uid, displayName, email, photoURL }) );
-            } else {
-                dispatch( signOut({ errorMessage: null }) );
-            }
+            if ( !user ) return dispatch( signOut({ errorMessage: null }) );
+
+            const { uid, email, displayName, photoURL } = user;
+            dispatch( signIn({ uid, displayName, email, photoURL }) );
+            dispatch( startLoadingMemories() );
         });
         
     }, [] );  

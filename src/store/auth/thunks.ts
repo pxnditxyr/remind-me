@@ -1,6 +1,7 @@
 import { Dispatch } from '@reduxjs/toolkit';
 import { signInUserWithEmailAndPassword, signInWithGoogle, signOutFirebase, signUpUserWithEmailAndPassword } from '../../firebase';
 import { ISignInNecessaryData, ISignUpNecessaryData } from '../../interfaces/ISignUpNecessaryData';
+import { clearMemoriesSignOut } from '../remind-me';
 import { checkingCredentials, signIn, signOut } from './';
 
 export const checkingAuthentication = ( email : string, password : string ) => {
@@ -51,6 +52,7 @@ export const startSignInUserWithEmailAndPassword = ( signInNecessaryData : ISign
 export const startSignOut = ()  => {
     return async ( dispatch : Dispatch ) => {
         await signOutFirebase();
+        dispatch( clearMemoriesSignOut() );
         dispatch( signOut({ errorMessage: null }) );
     };
 };

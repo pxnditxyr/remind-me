@@ -1,6 +1,5 @@
 import { ChangeEvent } from 'react';
 
-
 interface IFormFieldProps {
     name: string;
     type: string;

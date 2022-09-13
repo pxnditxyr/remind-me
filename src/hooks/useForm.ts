@@ -1,4 +1,4 @@
-import { ChangeEvent, FormEvent, useEffect, useMemo, useState } from 'react';
+import { ChangeEvent, useEffect, useMemo, useState } from 'react';
 
 export interface IFormValidations {
     [ key: string ]: [ ( value : string ) => boolean, string ];
@@ -11,7 +11,7 @@ interface IFormCheckValues {
     [ key: string ]: string | null;
 };
 
-export const useForm = <T extends IFormState, V extends IFormValidations>( initialState : T, formValidations : IFormValidations = {} ) => {
+export const useForm = <T extends IFormState>( initialState : T, formValidations : IFormValidations = {} ) => {
 
     const [ formState, setFormState ] = useState<T>( initialState );
     const [ formValidation, setFormValidation ] = useState<IFormCheckValues>( {} as IFormCheckValues );
@@ -19,6 +19,10 @@ export const useForm = <T extends IFormState, V extends IFormValidations>( initi
     useEffect( () => {
         createValidators();
     }, [ formState ] )
+
+    useEffect( () => {
+        setFormState( initialState );
+    }, [ initialState ] )
 
 
     const isFormValid = useMemo( () => {

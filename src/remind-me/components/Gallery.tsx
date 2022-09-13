@@ -1,23 +1,16 @@
+interface IGalleryProps {
+    imageUrls: string[] | undefined;
+    title: string;
+};
 
-const images = [
-    {
-        src: 'https://images.unsplash.com/photo-1518791841217-8f162f1e1131?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60',
-        title: 'Image 1',
-    },
-    {
-        src: 'https://images.unsplash.com/photo-1518791841217-8f162f1e1131?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60',
-        title: 'Image 2',
-    },
-];
-
-export const Gallery = () => {
+export const Gallery = ( { imageUrls, title } : IGalleryProps ) => {
 
     return (
         <div>
             {
-                images.map( image => (
-                    <picture>
-                        <img src={ image.src } alt={ image.title } />
+                imageUrls?.map( imageUrl => (
+                    <picture key={ imageUrl }>
+                        <img src={ imageUrl } alt={ title } />
                     </picture>
                 ))
             }
