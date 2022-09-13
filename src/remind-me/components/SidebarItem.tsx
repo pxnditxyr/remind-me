@@ -2,10 +2,6 @@ import { IMemory } from '../../interfaces';
 import { useAppDistpach } from '../../store';
 import { setActiveMemory } from '../../store/remind-me';
 
-// interface IMemoryProps {
-//     memories: IMemory;
-// }
-
 export const SidebarItem = ( { id, title, description, date, imageUrls } : IMemory ) => {
 
     const dispatch = useAppDistpach();

@@ -6,8 +6,6 @@ import { setActiveMemory, startDeletingMemory, startSaveMemory, startUploadingFi
 import { Gallery } from '../components';
 import { NotFoundPage } from '../pages';
 
-// import 'sweetalert2/dist/sweetalert2.min.css';
-
 interface IFormData {
     [ key: string ]: string;
 }

@@ -11,18 +11,12 @@ import { useForm, IFormValidations } from '../../hooks';
 import { isName, isDate, isEmail, isUsername, isPassword } from '../../helpers';
 
 const formData = {
-    name: 'Enrique',
-    birthday: '1998-09-12',
-    username: 'pxndxs',
-    email: 'example@gmail.com',
-    password: 'Madara987!',
-    confirmPassword: 'Madara987!'
-    // name: '',
-    // birthday: '',
-    // username: '',
-    // email: '',
-    // password: '',
-    // confirmPassword: ''
+    name: '',
+    birthday: '',
+    username: '',
+    email: '',
+    password: '',
+    confirmPassword: ''
 };
 
 

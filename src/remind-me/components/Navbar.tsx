@@ -1,4 +1,4 @@
-import { useAppDistpach, useAppSelector } from '../../store';
+import { useAppDistpach } from '../../store';
 import { startSignOut } from '../../store/auth';
 
 export const Navbar = () => {

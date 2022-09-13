@@ -27,5 +27,4 @@ export const fileUpload = async ( file : File ) => {
         console.log( error );
         throw new Error( error.message );
     }
-
 }

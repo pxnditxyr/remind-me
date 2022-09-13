@@ -4,13 +4,13 @@ import { ISignInNecessaryData, ISignUpNecessaryData } from '../../interfaces/ISi
 import { clearMemoriesSignOut } from '../remind-me';
 import { checkingCredentials, signIn, signOut } from './';
 
-export const checkingAuthentication = ( email : string, password : string ) => {
+export const checkingAuthentication = () => {
     return async ( dispatch : Dispatch ) => {
         dispatch( checkingCredentials() );
     };
 };
 
-export const startGoogleSignIn = ( email : string, password : string ) => {
+export const startGoogleSignIn = () => {
     return async ( dispatch : Dispatch ) => {
         dispatch( checkingCredentials() );
         const result = await signInWithGoogle();
@@ -37,7 +37,7 @@ export const startSignUpUserWithEmailAndPassword = ( signUpNecessaryData : ISign
 export const startSignInUserWithEmailAndPassword = ( signInNecessaryData : ISignInNecessaryData ) => {
     return async ( dispatch : Dispatch ) => {
 
-        const { email, password } = signInNecessaryData;
+        const { email } = signInNecessaryData;
 
         dispatch( checkingCredentials() );
 

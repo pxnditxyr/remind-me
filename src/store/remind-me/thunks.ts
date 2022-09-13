@@ -20,7 +20,7 @@ export const startNewMemory = () => {
         };
 
         const newDoc = doc( collection( FirebaseDB, `${ uid }/remind-me/memories` ) );
-        const setDocResponse = await setDoc( newDoc, newMemory );
+        await setDoc( newDoc, newMemory );
 
         newMemory.id = newDoc.id;
 
@@ -57,7 +57,7 @@ export const startSaveMemory = () => {
             delete memoryToFirestore.imageUrls;
 
         const docRef = doc( FirebaseDB, `${ uid }/remind-me/memories/${ activeMemory?.id }` )
-        const response = await setDoc( docRef, memoryToFirestore, { merge: true } );
+        await setDoc( docRef, memoryToFirestore, { merge: true } );
 
         dispatch( updatedMemory( activeMemory ) );
 

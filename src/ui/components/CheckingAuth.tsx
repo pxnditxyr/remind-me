@@ -1,5 +1,4 @@
 
-
 export const CheckingAuth = () => {
     return (
         <div>

@@ -5,7 +5,6 @@ import { useAppDistpach, useAppSelector } from '../store';
 import { signIn, signOut } from '../store/auth';
 import { startLoadingMemories } from '../store/remind-me';
 
-
 export const useCheckAuth = () => {
     const { status } = useAppSelector( state => state.auth );
 

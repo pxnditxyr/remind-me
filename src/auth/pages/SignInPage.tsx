@@ -12,10 +12,8 @@ import { FormField } from '../components';
 
 
 const formData = {
-    // email: 'yuki@gmail.com',
-    // password: '123456'
-    email: 'example@gmail.com',
-    password: 'Madara987!',
+    email: '',
+    password: '',
 }
 
 const formValidations : IFormValidations = {
@@ -45,7 +43,7 @@ export const SignInPage = () => {
     };
 
     const onGoogleSignIn = () => {
-        dispatch( startGoogleSignIn( email, password ) );
+        dispatch( startGoogleSignIn() );
     };
 
     return (
