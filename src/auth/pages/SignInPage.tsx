@@ -37,8 +37,9 @@ export const SignInPage = () => {
 
     const onSubmit = ( event : FormEvent<HTMLFormElement> ) => {
         event.preventDefault();
-        dispatch( startSignInUserWithEmailAndPassword( formState ) );
         setIsFormSubmitted( true );
+        if ( email.length < 3 ) return;
+        dispatch( startSignInUserWithEmailAndPassword( formState ) );
         onResetForm();
     };
 
@@ -48,7 +49,9 @@ export const SignInPage = () => {
 
     return (
         <AuthLayout title={ 'Sign In' }>
-            <form onSubmit={ onSubmit }>
+            <form
+                className="flex flex-col items-center gap-3 w-full"
+                onSubmit={ onSubmit }>
                 <FormField
                     type="email"
                     name="email"
@@ -59,20 +62,30 @@ export const SignInPage = () => {
                     onFormSubmitted={ isFormSubmitted }
                     />
                 <input
+                    className="w-full p-3 rounded-md border border-gray-300 focus:outline-none focus:border-gray-500"
                     type="password"
                     name="password"
                     placeholder="Password"
                     value={ password }
                     onChange={ onInputChange }
                     />
-                <button disabled={ isAuthenticated }> Sign In </button>
-                { errorMessage && <p> { errorMessage } </p> }
+
+                <button 
+                    disabled={ isAuthenticated }
+                    className="w-full p-3 rounded-md bg-emerald-600 text-white font-semibold focus:outline-none focus:ring-2 focus:ring-emerald-700 focus:ring-opacity-50"
+                > Sign In </button>
+                { errorMessage && ( <p className="text-red-500 text-sm font-semibold"> { errorMessage } </p> ) }
             </form>
-            <Link to="../signup">  Don't have an account? Sign Up </Link>
             <button 
                 onClick={ onGoogleSignIn }
                 disabled={ isAuthenticated }
+                className="w-full mx-3 p-3 rounded-md bg-red-600 text-white font-semibold focus:outline-none focus:ring-2 focus:ring-red-700 focus:ring-opacity-50"
             > Sign In with Google </button>
+            <Link
+                to="../signup"
+                className="text-sky-700 hover:underline px-3"
+            >  Don't have an account? Sign Up </Link>
+
         </AuthLayout>
     );
 };

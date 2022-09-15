@@ -6,7 +6,7 @@ interface IRemindMeLayoutProps {
 
 export const RemindMeLayout = ( { children } : IRemindMeLayoutProps ) => {
     return (
-        <div>
+        <div className="w-full h-full">
             <Navbar />
             <Sidebar />
             <main>

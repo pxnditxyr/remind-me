@@ -61,7 +61,9 @@ export const SignUpPage = () => {
     return (
         <AuthLayout title={ 'Sign Up' }>
             <form
-            onSubmit={ onSubmit }>
+                onSubmit={ onSubmit }
+                className="flex flex-col items-center gap-3 w-full"
+            >
                 <FormField
                     type="text"
                     name="name"
@@ -115,10 +117,16 @@ export const SignUpPage = () => {
                     onError={ samePasswordValid }
                     onFormSubmitted={ isFormSubmitted }
                     /> 
-                <button disabled={ isCheckingAuthentication }> Sign Up </button>
+                <button 
+                    disabled={ isCheckingAuthentication }
+                    className="w-full p-3 rounded-md bg-blue-500 text-white font-semibold focus:outline-none focus:ring-2 focus:ring-blue-300 focus:ring-offset-2 focus:ring-offset-gray-100"
+                > Sign Up </button>
                 { errorMessage && <p> { errorMessage } </p> }
             </form>
-            <Link to="../signin"> Already have an account? </Link>
+            <Link 
+                to="../signin"
+                className="text-blue-500 hover:text-blue-700"
+            > Already have an account? </Link>
         </AuthLayout>
     );
 };
