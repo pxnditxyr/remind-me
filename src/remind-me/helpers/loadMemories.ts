@@ -17,5 +17,7 @@ export const loadMemories = async ( uid : string ) => {
         })
     });
 
+    memories.sort( ( a, b ) => b.date - a.date );
+
     return memories;
 };

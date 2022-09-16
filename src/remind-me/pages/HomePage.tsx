@@ -14,7 +14,9 @@ export const HomePage = () => {
 
     return (
         <RemindMeLayout>
-            <h1> Remind Me </h1>
+            <h1
+                className="text-3xl font-bold text-gray-800"
+            > Remind Me </h1>
             {
                 ( activeMemory )
                     ? ( <MemoryView /> )

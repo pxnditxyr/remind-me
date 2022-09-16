@@ -20,7 +20,7 @@ export const remindMeSlice = createSlice({
     initialState,
     reducers: {
         addNewEmptyMemory: ( state, action ) => {
-            state.memories.push( action.payload );
+            state.memories = [ action.payload, ...state.memories ];
             state.isSaving = false;
         },
         setActiveMemory: ( state, action ) => {

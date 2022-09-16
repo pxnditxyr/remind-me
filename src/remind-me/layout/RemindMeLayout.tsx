@@ -5,13 +5,17 @@ interface IRemindMeLayoutProps {
 };
 
 export const RemindMeLayout = ( { children } : IRemindMeLayoutProps ) => {
+
     return (
-        <div className="w-full h-full">
+
+        <div className="w-full h-screen flex flex-col">
             <Navbar />
-            <Sidebar />
-            <main>
-                { children }
-            </main>
+            <div className="w-full h-full sm:flex sm:overflow-hidden">
+                <Sidebar />
+                <main className="w-full">
+                    { children }
+                </main>
+            </div>
         </div>
     );
 };
